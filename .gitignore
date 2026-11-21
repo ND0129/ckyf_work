@@ -1,0 +1,50 @@
+# ===== Keil MDK 编译生成物（不入库）=====
+hw1/MDK-ARM/hw1/
+hw1/MDK-ARM/DebugConfig/
+hw1/MDK-ARM/RTE/
+hw1/MDK-ARM/*.uvguix.*
+hw1/MDK-ARM/*.uvoptx.bak
+hw1/MDK-ARM/*.uvprojx.bak
+*.axf
+*.hex
+*.bin
+*.map
+*.lst
+*.o
+*.d
+*.crf
+*.dep
+*.lnp
+*.iex
+*.htm
+*.sct.bak
+
+# ===== 日志与临时文件 =====
+build*.log
+build_check.txt
+*.log
+
+# ===== 非作业内容（练习工程 / 截图 / PPT 中间产物）=====
+first/
+wokr1/
+ckyfwork1/
+ckyf_ work1/
+_shots/
+_ppt_build/
+_ppt2/
+*.pptx
+*.zip
+
+# ===== work1 / work2 / work3 的 Keil 编译生成物 =====
+work*/MDK-ARM/work*/
+work*/MDK-ARM/DebugConfig/
+work*/MDK-ARM/RTE/
+work*/MDK-ARM/*.uvguix.*
+*.uvoptx.bak
+*.uvprojx.bak
+
+# ===== 系统与编辑器 =====
+Thumbs.db
+.DS_Store
+desktop.ini
+.vscode/*.log
