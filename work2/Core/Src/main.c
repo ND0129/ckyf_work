@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -43,7 +44,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+volatile int a=0;
+static int b=0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -86,25 +88,19 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		static uint32_t a=0;
-		uint32_t b;
-		b=HAL_GetTick()-a;
-		if(b/250==1&&b%250==0)
+		if(a-b>=250)
 		{
-			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET);
-		}
-		else if(b/500==1)
-		{
-			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET);
-			a+=500;
+			b+=250;
+			HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
 		}	
     /* USER CODE END WHILE */
 
@@ -153,7 +149,13 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*htim)
+{
+	if(htim->Instance==TIM2)
+	{
+		a++;
+	}
+}	
 /* USER CODE END 4 */
 
 /**
